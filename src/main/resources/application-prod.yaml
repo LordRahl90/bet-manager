@@ -1,0 +1,31 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/bet_manager
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+kafka:
+  topic: "demo-topic"
+  bootstrap-servers: "relaxed-buck-9746-eu1-kafka.upstash.io:9092"
+  sasl:
+    mechanism": "SCRAM-SHA-256"
+    jaas:
+      config: "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"${KAFKA_USERNAME}\" password=\"${KAFKA_PASSWORD}\";"
+  security:
+    protocol: "SASL_SSL"
+  key:
+    serializer: "org.apache.kafka.common.serialization.StringSerializer"
+    deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+  value:
+    serializer: "org.apache.kafka.common.serialization.StringSerializer"
+    deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
